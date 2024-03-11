@@ -1,4 +1,4 @@
-
+import csv
 
 def main():
     ...
@@ -13,8 +13,17 @@ def main():
     # if word is correct, diplay so
     # if word is not correct still, reprompt with updated progress and try counter++
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
-
+    txt_to_csv()
     
+def txt_to_csv():
+    with open('list_of_words.txt', 'r') as in_file:
+        stripped = (line.strip() for line in in_file)
+        lines = (line.split(" ") for line in stripped if line) 
+        with open('list_of_words.csv', 'w') as out_file:
+            writer = csv.writer(out_file) 
+            writer.writerow(lines)
+
+
 
 def select_word():
     ...
