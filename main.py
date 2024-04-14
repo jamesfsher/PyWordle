@@ -14,12 +14,7 @@ def main():
     # if word is correct, diplay so
     # if word is not correct still, reprompt with updated progress and try counter++
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
-    txt_to_csv()
     
-def txt_to_csv():
-    with open('list_of_words.txt', 'r') as in_file:
-        lines = in_file.readlines()
-    list_of_words = pd.read_csv("list_of_words.txt", sep=r'\s+')
  
 
 def select_word():
