@@ -18,21 +18,9 @@ def main():
     print(select_word())
 
 
-    # Code that created csv from .txt list of words
-    # new_list = []
-    # with open('list_of_words.txt', 'r') as file:
-    #     words = file.read().splitlines()
-
-    # with open('output_file.csv', 'w', newline='') as csvfile:
-    #     writer = csv.writer(csvfile)
-    #     for word in words:
-    #         writer.writerow([word])
-
 def select_word():
     ...
-    # Function to select a word from a long list of words (create as separate text file?)
-    # Randomly select a word
-    # Store as a variable in current session
+    # Randomly select a word from csv file containing 5 letter words
     with open('list_of_words.csv', 'r') as file:
         reader = csv.reader(file)
         return random.choice(list(reader))
