@@ -15,15 +15,24 @@ def main():
     # if word is correct, diplay so
     # if word is not correct still, reprompt with updated progress and try counter++
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
-    current_word = select_word()
+    current_word = select_word().lower()
     print(current_word)
     current_wordle = list(current_word)
     print(current_wordle)
     try_counter = 0
+    progressed_word = ['', '', '', '', '']
     available_letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     while try_counter <= 5:
-        guess = input("Guess a word: ")
-        guess_wordled = list(guess)
+        guess = input("Guess a word: ").lower()
+        for letter in guess:
+            print(letter)
+            if letter in current_wordle:
+                print(guess[letter])
+                if guess[letter] == current_wordle[letter]:
+                    progressed_word[guess[letter]] = letter
+        print(progressed_word)
+
+
 
 
 
