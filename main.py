@@ -15,16 +15,32 @@ def main():
     # if word is correct, diplay so
     # if word is not correct still, reprompt with updated progress and try counter++
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
-    print(select_word())
+    current_word = select_word()
+    print(current_word)
+    current_wordle = list(current_word)
+    print(current_wordle)
+    try_counter = 0
+    available_letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    while try_counter <= 5:
+        guess = input("Guess a word: ")
+        guess_wordled = list(guess)
+
+
 
 
 def select_word():
     ...
     # Randomly select a word from csv file containing 5 letter words
-    with open('list_of_words.csv', 'r') as file:
-        reader = csv.reader(file)
-        return random.choice(list(reader))
-    
+    words = ['Above', 'About', 'Abuse']
+    # with open('list_of_words.csv', 'r') as file:
+    #     reader = csv.reader(file)
+    #     return random.choice(list(reader))
+    return random.choice(words)
+
+
+def check_guess():
+    ...
+
 
 
 
