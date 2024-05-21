@@ -27,9 +27,10 @@ def main():
         for letter in guess:
             print(letter)
             if letter in current_wordle:
-                print(guess[letter])
-                if guess[letter] == current_wordle[letter]:
-                    progressed_word[guess[letter]] = letter
+                if guess.index(letter) == current_wordle.index(letter):
+                    progressed_word[guess.index(letter)] = letter.upper()
+                else:
+                    progressed_word[guess.index(letter)] = letter.lower()    
         print(progressed_word)
 
 
