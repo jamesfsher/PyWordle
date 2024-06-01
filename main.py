@@ -18,21 +18,27 @@ def main():
     current_word = select_word().lower()
     print(current_word)
     current_wordle = list(current_word)
-    print(current_wordle)
     try_counter = 0
     progressed_word = ['', '', '', '', '']
-    available_letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    correct_letter_wrong_place = [] 
+    AVAILABLE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    letters_remaining = AVAILABLE_LETTERS
     while try_counter <= 5:
         guess(try_counter) = input("Guess a word: ").lower()
         for letter in guess:
-            print(letter)
             if letter in current_wordle:
                 if guess.index(letter) == current_wordle.index(letter):
                     progressed_word[guess.index(letter)] = letter.upper()
                 else:
-                    progressed_word[guess.index(letter)] = letter.lower()    
-        print(progressed_word)
-
+                   correct_letter_wrong_place.append(letter)                           
+            else:
+                try:
+                    letters_remaining.remove(letter.upper())
+                except ValueError:
+                    continue
+        print("Current progress: ", progressed_word)
+        print("Correct letters wrong place: ", correct_letter_wrong_place)
+        print("Letters remaining: ", letters_remaining)
 
 
 
