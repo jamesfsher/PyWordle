@@ -25,7 +25,7 @@ def main():
     AVAILABLE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     letters_remaining = AVAILABLE_LETTERS
     while try_counter <= 5:
-        guess[try_counter] = input("Guess a word: ").lower()
+        guess.append(input("Guess a word: ").lower())
         for letter in guess:
             if letter in current_wordle:
                 if guess.index(letter) == current_wordle.index(letter):
@@ -40,6 +40,9 @@ def main():
         print("Current progress: ", progressed_word)
         print("Correct letters wrong place: ", correct_letter_wrong_place)
         print("Letters remaining: ", letters_remaining)
+        for i in guess:
+            print(i)
+        try_counter += 1
 
 
 
