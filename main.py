@@ -23,7 +23,7 @@ def main():
     progressed_word = ['', '', '', '', '']
     available_letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     while try_counter <= 5:
-        guess = input("Guess a word: ").lower()
+        guess(try_counter) = input("Guess a word: ").lower()
         for letter in guess:
             print(letter)
             if letter in current_wordle:
