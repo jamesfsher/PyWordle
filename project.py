@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 import random
 import os
-
+import string
 
 def main():
     ...
@@ -25,8 +25,7 @@ def main():
     progressed_word = ['', '', '', '', '']
     guess = []
     correct_letter_wrong_place = [] 
-    AVAILABLE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    letters_remaining = AVAILABLE_LETTERS
+    letters_remaining = list(string.ascii_lowercase)
     while try_counter < 5:
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
@@ -49,7 +48,8 @@ def main():
             print(i)
         try_counter += 1
 
-
+def play_round():
+    ...
 
 
 
