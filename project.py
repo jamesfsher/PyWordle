@@ -1,6 +1,8 @@
 import csv
 import pandas as pd
 import random
+import os
+
 
 def main():
     ...
@@ -17,6 +19,7 @@ def main():
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
     current_word = select_word().lower()
     print(current_word)
+    term_size = os.get_terminal_size()
     current_wordle = list(current_word)
     try_counter = 0
     progressed_word = ['', '', '', '', '']
@@ -24,7 +27,9 @@ def main():
     correct_letter_wrong_place = [] 
     AVAILABLE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     letters_remaining = AVAILABLE_LETTERS
-    while try_counter <= 5:
+    while try_counter < 5:
+        print('=' * term_size.columns)
+        print("Guess #", try_counter + 1)
         guess.append(input("Guess a word: ").lower())
         for letter in guess:
             if letter in current_wordle:
