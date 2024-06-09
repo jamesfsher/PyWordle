@@ -30,8 +30,10 @@ def main():
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
         guess.append(input("Guess a word: ").lower())
-        for letter in guess:
+        for letter in guess[try_counter]:
+            print(letter)
             if letter in current_wordle:
+                print(guess.index(letter))
                 if guess.index(letter) == current_wordle.index(letter):
                     progressed_word[guess.index(letter)] = letter.upper()
                 else:
@@ -61,6 +63,11 @@ def select_word():
     #     reader = csv.reader(file)
     #     return random.choice(list(reader))
     return random.choice(words)
+
+def guess_word():
+    # Input word
+    # Error checking for valid input with try except
+    ...
 
 
 def check_guess():
