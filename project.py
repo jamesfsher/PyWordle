@@ -32,23 +32,24 @@ def main():
         guess = input("Guess a word: ").lower()
         guesses.append(guess)
         for letter in guess:
-            print(letter)
             if letter in current_wordle:
-                print(guess.index(letter))
                 if guess.index(letter) == current_wordle.index(letter):
                     progressed_word[guess.index(letter)] = letter.upper()
+                    try:
+                        letters_remaining[letters_remaining.index(letter)] = letter.upper()
+                    except ValueError:
+                        continue
                 else:
-                   correct_letter_wrong_place.append(letter)                           
+                    if letter not in progressed_word: 
+                        correct_letter_wrong_place.append(letter)                           
             else:
                 try:
-                    letters_remaining.remove(letter.upper())
+                    letters_remaining.remove(letter)
                 except ValueError:
                     continue
         print("Current progress: ", progressed_word)
         print("Correct letters wrong place: ", correct_letter_wrong_place)
         print("Letters remaining: ", letters_remaining)
-        for i in guess:
-            print(i)
         try_counter += 1
 
 def play_round():
