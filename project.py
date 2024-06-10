@@ -23,14 +23,15 @@ def main():
     current_wordle = list(current_word)
     try_counter = 0
     progressed_word = ['', '', '', '', '']
-    guess = []
+    guesses = []
     correct_letter_wrong_place = [] 
     letters_remaining = list(string.ascii_lowercase)
     while try_counter < 5:
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
-        guess.append(input("Guess a word: ").lower())
-        for letter in guess[try_counter]:
+        guess = input("Guess a word: ").lower()
+        guesses.append(guess)
+        for letter in guess:
             print(letter)
             if letter in current_wordle:
                 print(guess.index(letter))
