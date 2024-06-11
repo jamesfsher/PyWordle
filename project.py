@@ -60,11 +60,14 @@ def play_round():
 def select_word():
     ...
     # Randomly select a word from csv file containing 5 letter words
-    words = ['Above', 'About', 'Abuse']
-    # with open('list_of_words.csv', 'r') as file:
-    #     reader = csv.reader(file)
-    #     return random.choice(list(reader))
+    words = []
+    with open('list_of_words.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            words.append(row)
+    print(random.choice(words))        
     return random.choice(words)
+    # return random.choice(words)
 
 def guess_word():
     # Input word
