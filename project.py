@@ -66,7 +66,7 @@ def select_word():
         for row in reader:
             words.append(row)
     print(random.choice(words))        
-    return random.choice(words)
+    return str(random.choice(words))
     # return random.choice(words)
 
 def guess_word():
