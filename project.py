@@ -30,6 +30,12 @@ def main():
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
         guess = input("Guess a word: ").lower()
+        while True:
+            if check_guess(guess) == 0:
+                guess = input("Invalid input, try again: ")
+                continue
+            else:
+                break
         guesses.append(guess)
         for letter in guess:
             if letter in current_wordle:
@@ -64,7 +70,7 @@ def select_word():
     with open('list_of_words.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            words.append(row)
+            words.append(row[0])
     print(random.choice(words))        
     return str(random.choice(words))
     # return random.choice(words)
@@ -74,13 +80,12 @@ def guess_word():
     # Error checking for valid input with try except
     ...
 
-
-def check_guess():
+def check_guess(guess):
     ...
-
-
-
-
+    if len(guess) > 5:
+        return 0
+    else:
+        return 1 
 
 
 if __name__ == '__main__':
