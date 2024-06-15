@@ -29,13 +29,7 @@ def main():
     while try_counter < 5:
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
-        guess = input("Guess a word: ").lower()
-        while True:
-            if check_guess(guess) == 0:
-                guess = input("Invalid input, try again: ")
-                continue
-            else:
-                break
+        guess = user_guess()
         guesses.append(guess)
         for letter in guess:
             if letter in current_wordle:
@@ -76,12 +70,14 @@ def select_word():
     return str(random.choice(words))
 
 # Function to check validity of user's guess 
-def check_guess(guess):
-    if len(guess) > 5:
-        return 0
-    else:
-        return 1 
-
+def user_guess():
+    guess = input("Guess a word: ").lower()
+    while True:
+        if len(guess) > 5 or not isinstance(guess, str):
+            guess = input("Invalid input, try again: ")
+            continue
+        else:
+            return guess
 
 if __name__ == '__main__':
     main()
