@@ -60,7 +60,7 @@ def main():
 
 def play_round():
     ...
-
+    # Function to play and track a round of 5 
 
 
 def select_word():
@@ -70,18 +70,13 @@ def select_word():
     with open('list_of_words.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
+            # Reads first item in each row since CSV was set up incorrectly and is 1 word per row
             words.append(row[0])
     print(random.choice(words))        
     return str(random.choice(words))
-    # return random.choice(words)
 
-def guess_word():
-    # Input word
-    # Error checking for valid input with try except
-    ...
-
+# Function to check validity of user's guess 
 def check_guess(guess):
-    ...
     if len(guess) > 5:
         return 0
     else:
