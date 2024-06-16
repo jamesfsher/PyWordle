@@ -17,7 +17,8 @@ def main():
     # if word is correct, diplay so
     # if word is not correct still, reprompt with updated progress and try counter++
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
-    current_word = select_word().lower()
+    current_word, all_words = select_word()
+    current_word.lower()
     print(current_word)
     term_size = os.get_terminal_size()
     current_wordle = list(current_word)
@@ -29,7 +30,7 @@ def main():
     while try_counter < 5:
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
-        guess = user_guess()
+        guess = user_guess(all_words)
         guesses.append(guess)
         for letter in guess:
             if letter in current_wordle:
@@ -66,15 +67,17 @@ def select_word():
         for row in reader:
             # Reads first item in each row since CSV was set up incorrectly and is 1 word per row
             words.append(row[0])
-    print(random.choice(words))        
-    return str(random.choice(words))
+    return str(random.choice(words)), words
 
 # Function to check validity of user's guess 
-def user_guess():
+def user_guess(all_words):
     guess = input("Guess a word: ").lower()
     while True:
         if len(guess) != 5 or not guess.isalpha():
             guess = input("Invalid input, try again: ")
+            continue
+        elif guess not in all_words:
+            guess = input("Not in list of words, try again: ")
             continue
         else:
             return guess
