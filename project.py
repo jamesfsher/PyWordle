@@ -73,7 +73,7 @@ def select_word():
 def user_guess():
     guess = input("Guess a word: ").lower()
     while True:
-        if len(guess) > 5 or not isinstance(guess, str):
+        if len(guess) != 5 or not guess.isalpha():
             guess = input("Invalid input, try again: ")
             continue
         else:
