@@ -17,6 +17,20 @@ def main():
     # if word is correct, diplay so
     # if word is not correct still, reprompt with updated progress and try counter++
     # possibly display all the possible letters also, eliminating the incorrectly guessed ones?
+    print("""
+          Welcome to PyWordle!
+          Play the game by entering a 5 letter word to try to match one randomly chosen.
+          If you get the word right, you win! If you don’t, but any of the letters are in the correct place, you’ll 
+          see in “Progressed Word”. If you guess a right letter, but it’s not in 
+          the right place, you’ll see it under, “Correct letter wrong place”. 
+          With only 5 trys to get it right, think carefully!
+          """)
+    play_round()
+
+
+def play_round():
+    ...
+    # Function to play and track a round of 5 
     current_word, all_words = select_word()
     current_word.lower()
     print(current_word)
@@ -53,11 +67,6 @@ def main():
         print("Letters remaining: ", letters_remaining)
         try_counter += 1
 
-def play_round():
-    ...
-    # Function to play and track a round of 5 
-
-
 def select_word():
     ...
     # Randomly select a word from csv file containing 5 letter words
@@ -66,7 +75,7 @@ def select_word():
         reader = csv.reader(file)
         for row in reader:
             # Reads first item in each row since CSV was set up incorrectly and is 1 word per row
-            words.append(row[0])
+            words.append(row[0].lower())
     return str(random.choice(words)), words
 
 # Function to check validity of user's guess 
