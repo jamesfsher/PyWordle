@@ -32,6 +32,7 @@ def play_round():
     ...
     # Function to play and track a round of 5 
     current_word, all_words = select_word()
+    current_word = "apple"
     current_word.lower()
     print(current_word)
     term_size = os.get_terminal_size()
@@ -46,22 +47,38 @@ def play_round():
         print("Guess #", try_counter + 1)
         guess = user_guess(all_words)
         guesses.append(guess)
-        for letter in guess:
-            if letter in current_wordle:
-                if guess.index(letter) == current_wordle.index(letter):
-                    progressed_word[guess.index(letter)] = letter.upper()
-                    try:
-                        letters_remaining[letters_remaining.index(letter)] = letter.upper()
-                    except ValueError:
-                        continue
-                else:
-                    if letter not in progressed_word: 
-                        correct_letter_wrong_place.append(letter)                           
-            else:
+        for i in range(len(guess)):
+            if guess[i] == current_word[i]:
+                progressed_word[i] = guess[i]
                 try:
-                    letters_remaining.remove(letter)
+                    letters_remaining[i] = guess[i].upper()
                 except ValueError:
                     continue
+            elif guess[i] in current_word:
+                correct_letter_wrong_place.append(guess[i])
+            else:
+                try:
+                    letters_remaining.remove(guess[i])
+                except ValueError:
+                    continue
+
+        # First attempt to check guess
+        # for letter in guess:
+        #     if letter in current_wordle:
+        #         if guess.index(letter) == current_wordle.index(letter):
+        #             progressed_word[guess.index(letter)] = letter.upper()
+        #             try:
+        #                 letters_remaining[letters_remaining.index(letter)] = letter.upper()
+        #             except ValueError:
+        #                 continue
+        #         else:
+        #             if letter not in progressed_word: 
+        #                 correct_letter_wrong_place.append(letter)                           
+        #     else:
+        #         try:
+        #             letters_remaining.remove(letter)
+        #         except ValueError:
+        #             continue
         print("Current progress: ", progressed_word)
         print("Correct letters wrong place: ", correct_letter_wrong_place)
         print("Letters remaining: ", letters_remaining)
