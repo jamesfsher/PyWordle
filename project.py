@@ -55,12 +55,20 @@ def play_round():
                 except ValueError:
                     continue
             elif guess[i] in current_word:
-                correct_letter_wrong_place.append(guess[i])
+                # Need to find location of letter, and capitalize, not capitalize by location in guess
+                # correct_letter_wrong_place.append(guess[i])
+                ...
             else:
                 try:
                     letters_remaining.remove(guess[i])
                 except ValueError:
                     continue
+        if ''.join(progressed_word) == current_word:
+            end_game("winner")
+    if ''.join(progressed_word) != current_word:
+        end_game("loser")   
+
+
 
         # First attempt to check guess
         # for letter in guess:
@@ -83,7 +91,8 @@ def play_round():
         print("Correct letters wrong place: ", correct_letter_wrong_place)
         print("Letters remaining: ", letters_remaining)
         try_counter += 1
-
+def end_game(result):
+    ...
 def select_word():
     ...
     # Randomly select a word from csv file containing 5 letter words
