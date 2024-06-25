@@ -36,7 +36,6 @@ def play_round():
     current_word.lower()
     print(current_word)
     term_size = os.get_terminal_size()
-    current_wordle = list(current_word)
     try_counter = 0
     progressed_word = ['', '', '', '', '']
     guesses = []
@@ -51,13 +50,11 @@ def play_round():
             if guess[i] == current_word[i]:
                 progressed_word[i] = guess[i]
                 try:
-                    letters_remaining[i] = guess[i].upper()
+                    letters_remaining[letters_remaining.index(guess[i])] = guess[i].upper()
                 except ValueError:
                     continue
             elif guess[i] in current_word:
-                # Need to find location of letter, and capitalize, not capitalize by location in guess
-                # correct_letter_wrong_place.append(guess[i])
-                ...
+                correct_letter_wrong_place.append(guess[i])
             else:
                 try:
                     letters_remaining.remove(guess[i])
@@ -65,6 +62,7 @@ def play_round():
                     continue
         if ''.join(progressed_word) == current_word:
             end_game("winner")
+        try_counter += 1
     if ''.join(progressed_word) != current_word:
         end_game("loser")   
 
@@ -90,9 +88,20 @@ def play_round():
         print("Current progress: ", progressed_word)
         print("Correct letters wrong place: ", correct_letter_wrong_place)
         print("Letters remaining: ", letters_remaining)
-        try_counter += 1
+
+
+
 def end_game(result):
     ...
+    # function that takes a "win" or "lose" variable, and ends the game and resets globals to new game mode
+    if result == "winner":
+        print("you've won!")
+    elif result == "loser":
+        print("better luck next time!")
+    else:
+        print("what did you do?")
+
+
 def select_word():
     ...
     # Randomly select a word from csv file containing 5 letter words
