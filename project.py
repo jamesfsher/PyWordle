@@ -86,6 +86,14 @@ def end_game(result):
         print("better luck next time!")
     else:
         print("what did you do?")
+    while True:
+        play_again = input("Do you want to play again (Y or N): ").upper()
+        if play_again == "Y" or play_again == "YES":
+            play_round()
+        elif play_again == "N" or play_again == "NO":
+            print("Thanks for playing!")
+            exit()
+            
 
 
 def select_word():
