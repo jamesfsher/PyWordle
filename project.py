@@ -33,6 +33,7 @@ def play_round():
         print("Guess #", try_counter + 1)
         guess = user_guess(all_words)
         guesses.append(guess)
+        correct_letter_wrong_place.clear()
         for i in range(len(guess)):
             if guess[i] == current_word[i]:
                 progressed_word[i] = guess[i]
@@ -41,7 +42,6 @@ def play_round():
                 except ValueError:
                     continue
             elif guess[i] in current_word:
-                correct_letter_wrong_place.clear()
                 correct_letter_wrong_place.append(guess[i])
             else:
                 try:
