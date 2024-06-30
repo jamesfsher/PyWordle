@@ -19,9 +19,9 @@ def main():
 def play_round():
     # Function to play and track a round of 5 
     current_word, all_words = select_word()
-    current_word = "apple"
+    # current_word = "apple"
     current_word.lower()
-    print(current_word)
+    # print(current_word)
     term_size = os.get_terminal_size()
     try_counter = 0
     progressed_word = ['', '', '', '', '']
@@ -41,49 +41,37 @@ def play_round():
                 except ValueError:
                     continue
             elif guess[i] in current_word:
+                correct_letter_wrong_place.clear()
                 correct_letter_wrong_place.append(guess[i])
             else:
                 try:
                     letters_remaining.remove(guess[i])
                 except ValueError:
                     continue
-        if ''.join(progressed_word) == current_word:
-            end_game("winner")
-        try_counter += 1
-    if ''.join(progressed_word) != current_word:
-        end_game("loser")   
 
-
-
-        # First attempt to check guess
-        # for letter in guess:
-        #     if letter in current_wordle:
-        #         if guess.index(letter) == current_wordle.index(letter):
-        #             progressed_word[guess.index(letter)] = letter.upper()
-        #             try:
-        #                 letters_remaining[letters_remaining.index(letter)] = letter.upper()
-        #             except ValueError:
-        #                 continue
-        #         else:
-        #             if letter not in progressed_word: 
-        #                 correct_letter_wrong_place.append(letter)                           
-        #     else:
-        #         try:
-        #             letters_remaining.remove(letter)
-        #         except ValueError:
-        #             continue
         print("Current progress: ", progressed_word)
         print("Correct letters wrong place: ", correct_letter_wrong_place)
         print("Letters remaining: ", letters_remaining)
+        if ''.join(progressed_word) == current_word:
+            end_game("winner", guesses, current_word)
+        try_counter += 1
+    if ''.join(progressed_word) != current_word:
+        end_game("loser", guesses, current_word)   
 
 
 
-def end_game(result):
+def end_game(result, guesses, current_word):
     # function that takes a "win" or "lose" variable, and ends the game and resets globals to new game mode
     if result == "winner":
-        print("you've won!")
+        print("You've won! The word was " + current_word)
+        print("Your guesses")
+        for guess in guesses:
+            print(guess)
     elif result == "loser":
-        print("better luck next time!")
+        print("You're out of guesses! The word was " + current_word)
+        print("Your guesses")
+        for guess in guesses:
+            print(guess)
     else:
         print("what did you do?")
     while True:
