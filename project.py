@@ -19,9 +19,7 @@ def main():
 def play_round():
     # Function to play and track a round of 5 
     current_word, all_words = select_word()
-    # current_word = "apple"
     current_word.lower()
-    # print(current_word)
     term_size = os.get_terminal_size()
     try_counter = 0
     progressed_word = ['', '', '', '', '']
@@ -34,6 +32,7 @@ def play_round():
         guess = user_guess(all_words)
         guesses.append(guess)
         correct_letter_wrong_place.clear()
+        # Separate the guess checker to seprate function for checking
         for i in range(len(guess)):
             if guess[i] == current_word[i]:
                 progressed_word[i] = guess[i]
