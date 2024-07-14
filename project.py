@@ -21,7 +21,7 @@ def play_round():
     current_word, all_words = select_word()
     current_word = current_word.lower()
     term_size = os.get_terminal_size()
-    try_counter = 0
+    try_counter = 0     
     progressed_word = ['', '', '', '', '']
     guesses = []
     correct_letter_wrong_place = [] 
@@ -32,30 +32,37 @@ def play_round():
         guess = get_user_guess(all_words)
         guesses.append(guess)
         correct_letter_wrong_place.clear()
-        # Separate the guess checker to seprate function for checking
-        for i in range(len(guess)):
-            if guess[i] == current_word[i]:
-                progressed_word[i] = guess[i]
-                try:
-                    letters_remaining[letters_remaining.index(guess[i])] = guess[i].upper()
-                except ValueError:
-                    continue
-            elif guess[i] in current_word:
-                correct_letter_wrong_place.append(guess[i])
-            else:
-                try:
-                    letters_remaining.remove(guess[i])
-                except ValueError:
-                    continue
 
-        print("Current progress: ", progressed_word)
-        print("Correct letters wrong place: ", correct_letter_wrong_place)
-        print("Letters remaining: ", letters_remaining)
+        update_progress(guess, current_word, progressed_word, letters_remaining, correct_letter_wrong_place)
+        
         if ''.join(progressed_word) == current_word:
             end_game("winner", guesses, current_word)
         try_counter += 1
     if ''.join(progressed_word) != current_word:
         end_game("loser", guesses, current_word)   
+
+def update_progress(guess, current_word, progressed_word, letters_remaining, correct_letter_wrong_place):
+    ...
+    for i in range(len(guess)):
+        if guess[i] == current_word[i]:
+            progressed_word[i] = guess[i]
+            try:
+                letters_remaining[letters_remaining.index(guess[i])] = guess[i].upper()
+            except ValueError:
+                continue
+        elif guess[i] in current_word:
+            correct_letter_wrong_place.append(guess[i])
+        else:
+            try:
+                letters_remaining.remove(guess[i])
+            except ValueError:
+                continue
+
+def print_game_state(progressed_word, correct_letter_wrong_place, letters_remaining):
+    ...
+    print("Current progress: ", progressed_word)
+    print("Correct letters wrong place: ", correct_letter_wrong_place)
+    print("Letters remaining: ", letters_remaining)
 
 
 
@@ -73,9 +80,14 @@ def end_game(result, guesses, current_word):
             print(guess)
     else:
         print("what did you do?")
+    user_play_again()
+
+
+def user_play_again():
     while True:
         play_again = input("Do you want to play again (Y or N): ").upper()
         if play_again == "Y" or play_again == "YES":
+            print("Lets play again!")
             play_round()
         elif play_again == "N" or play_again == "NO":
             print("Thanks for playing!")
@@ -83,8 +95,6 @@ def end_game(result, guesses, current_word):
         else:
             print("Invalid input, enter yes or no: ")
 
-
-            
 
 
 def select_word():
