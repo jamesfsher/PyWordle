@@ -80,6 +80,10 @@ def end_game(result, guesses, current_word):
         elif play_again == "N" or play_again == "NO":
             print("Thanks for playing!")
             exit()
+        else:
+            print("Invalid input, enter yes or no: ")
+
+
             
 
 
