@@ -29,7 +29,7 @@ def play_round():
     while try_counter < 5:
         print('=' * term_size.columns)
         print("Guess #", try_counter + 1)
-        guess = user_guess(all_words)
+        guess = get_user_guess(all_words)
         guesses.append(guess)
         correct_letter_wrong_place.clear()
         # Separate the guess checker to seprate function for checking
@@ -94,7 +94,7 @@ def select_word():
     return str(random.choice(words)), words
 
 # Function to check validity of user's guess 
-def user_guess(all_words):
+def get_user_guess(all_words):
     guess = input("Guess a word: ").lower()
     while True:
         if len(guess) != 5 or not guess.isalpha():
