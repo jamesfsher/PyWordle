@@ -19,7 +19,7 @@ def main():
 def play_round():
     # Function to play and track a round of 5 
     current_word, all_words = select_word()
-    current_word.lower()
+    current_word = current_word.lower()
     term_size = os.get_terminal_size()
     try_counter = 0
     progressed_word = ['', '', '', '', '']
