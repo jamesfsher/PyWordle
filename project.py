@@ -34,15 +34,18 @@ def play_round():
         correct_letter_wrong_place.clear()
 
         update_progress(guess, current_word, progressed_word, letters_remaining, correct_letter_wrong_place)
-        
-        if ''.join(progressed_word) == current_word:
+        print_game_state(progressed_word, correct_letter_wrong_place, letters_remaining)
+
+
+        if is_game_won(progressed_word, current_word):
             end_game("winner", guesses, current_word)
+            return
+
         try_counter += 1
-    if ''.join(progressed_word) != current_word:
-        end_game("loser", guesses, current_word)   
+        
+    end_game("loser", guesses, current_word)   
 
 def update_progress(guess, current_word, progressed_word, letters_remaining, correct_letter_wrong_place):
-    ...
     for i in range(len(guess)):
         if guess[i] == current_word[i]:
             progressed_word[i] = guess[i]
@@ -59,12 +62,12 @@ def update_progress(guess, current_word, progressed_word, letters_remaining, cor
                 continue
 
 def print_game_state(progressed_word, correct_letter_wrong_place, letters_remaining):
-    ...
     print("Current progress: ", progressed_word)
     print("Correct letters wrong place: ", correct_letter_wrong_place)
     print("Letters remaining: ", letters_remaining)
 
-
+def is_game_won(progressed_word, current_word):
+     return ''.join(progressed_word) == current_word
 
 def end_game(result, guesses, current_word):
     # function that takes a "win" or "lose" variable, and ends the game and resets globals to new game mode
