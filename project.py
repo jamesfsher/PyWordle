@@ -1,5 +1,4 @@
 import csv
-import pandas as pd
 import random
 import os
 import string
@@ -20,7 +19,10 @@ def play_round():
     # Function to play and track a round of 5 
     current_word, all_words = select_word()
     current_word = current_word.lower()
-    term_size = os.get_terminal_size()
+    try:
+        term_size = os.get_terminal_size()
+    except OSError:
+        term_size = os.terminal_size((80, 20))
     try_counter = 0     
     progressed_word = ['', '', '', '', '']
     guesses = []
