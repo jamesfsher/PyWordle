@@ -12,10 +12,18 @@ def main():
           the right place, you’ll see it under, “Correct letter wrong place”. 
           With only 5 trys to get it right, think carefully!
           """)
-    play_round()
+    play_round(
+        select_word=select_word,
+        get_user_guess=get_user_guess,
+        update_progress=update_progress,
+        print_game_state=print_game_state,
+        is_game_won=is_game_won,
+        end_game=end_game,
+        user_play_again=user_play_again
+    )
 
 
-def play_round():
+def play_round(select_word, get_user_guess, update_progress, print_game_state, is_game_won, end_game, user_play_again):
     # Function to play and track a round of 5 
     current_word, all_words = select_word()
     current_word = current_word.lower()
@@ -93,7 +101,15 @@ def user_play_again():
         play_again = input("Do you want to play again (Y or N): ").upper()
         if play_again == "Y" or play_again == "YES":
             print("Lets play again!")
-            play_round()
+            play_round(
+                select_word=select_word,
+                get_user_guess=get_user_guess,
+                update_progress=update_progress,
+                print_game_state=print_game_state,
+                is_game_won=is_game_won,
+                end_game=end_game,
+                user_play_again=user_play_again
+            )
         elif play_again == "N" or play_again == "NO":
             print("Thanks for playing!")
             exit()
