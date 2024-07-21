@@ -1,5 +1,6 @@
 import pytest
-from project import end_game, select_word, get_user_guess, update_progress
+from project import play_round, update_progress, is_game_won, select_word, get_user_guess, print_game_state, end_game, user_play_again
+
 
 def test_update_progress():
     guess = "apple"
@@ -16,3 +17,10 @@ def test_update_progress():
     assert "p" not in letters_remaining
     assert "l" not in letters_remaining
     assert "e" not in letters_remaining
+
+
+def mock_get_user_guess(all_words):
+    return "apple"
+
+def mock_select_word():
+    return "apple", ["apple", "ample", "apply"]
