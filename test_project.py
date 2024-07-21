@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch, mock_open
 from project import play_round, update_progress, is_game_won, select_word, get_user_guess, print_game_state, end_game, user_play_again
 
 
@@ -18,9 +19,32 @@ def test_update_progress():
     assert "l" not in letters_remaining
     assert "e" not in letters_remaining
 
+@patch('project.end_game')
+@patch('project.select_word', return_value=("apple", ["apple", "ample", "apply"]))
+@patch('project.get_user_guess', return_value="apple")
+@patch('project.is_game_won')
+@patch('project.update_progress')
+def test_play_round(mock_update_progress, mock_is_game_won, mock_get_user_guess, mock_select_word, mock_end_game):
+    from project import play_round, print_game_state, user_play_again
 
-def mock_get_user_guess(all_words):
-    return "apple"
+    play_round(
+        mock_select_word,
+        mock_get_user_guess,
+        mock_update_progress,
+        print_game_state,
+        mock_is_game_won,
+        mock_end_game,
+        user_play_again
+    )
 
-def mock_select_word():
-    return "apple", ["apple", "ample", "apply"]
+    assert mock_update_progress.called
+    assert mock_is_game_won.called
+    assert mock_get_user_guess.called
+    assert mock_select_word.called
+    assert mock_end_game.called
+
+
+
+
+if __name__ == "__main__":
+    pytest.main()
