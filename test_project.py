@@ -43,8 +43,12 @@ def test_play_round(mock_update_progress, mock_is_game_won, mock_get_user_guess,
     assert mock_select_word.called
     assert mock_end_game.called
 
-
-
+@patch('builtins.open', new_callable=mock_open, read_data="apple\nample\napply\n")
+@patch('csv.reader', return_value=[["apple"], ["ample"], ["apply"]])
+def test_select_word(mock_csv_reader, mock_open):
+    word, all_words = select_word()
+    assert word in ["apple", "ample", "apply"]
+    assert all_words == ["apple", "ample", "apply"]
 
 if __name__ == "__main__":
     pytest.main()
