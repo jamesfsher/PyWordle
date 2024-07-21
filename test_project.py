@@ -11,4 +11,8 @@ def test_update_progress():
     update_progress(guess, current_word, progressed_word, letters_remaining, correct_letter_wrong_place)
 
     assert progressed_word == ['a', '', 'p', 'l', 'e']
-
+    assert "a" not in letters_remaining
+    assert "p" in correct_letter_wrong_place
+    assert "p" not in letters_remaining
+    assert "l" not in letters_remaining
+    assert "e" not in letters_remaining
