@@ -47,7 +47,7 @@ def play_round(select_word, get_user_guess, update_progress, print_game_state, i
         print_game_state(progressed_word, correct_letter_wrong_place, letters_remaining)
 
 
-        if is_game_won(progressed_word, current_word):
+        if is_game_won(guess, current_word):
             end_game("winner", guesses, current_word)
             return
 
@@ -76,23 +76,21 @@ def print_game_state(progressed_word, correct_letter_wrong_place, letters_remain
     print("Correct letters wrong place: ", correct_letter_wrong_place)
     print("Letters remaining: ", letters_remaining)
 
-def is_game_won(progressed_word, current_word):
-     return ''.join(progressed_word) == current_word
+def is_game_won(guess, current_word):
+   return guess == current_word
 
 def end_game(result, guesses, current_word):
-    # function that takes a "win" or "lose" variable, and ends the game and resets globals to new game mode
+    # function that takes a "winner" or "loser" variable, and ends the game and resets globals to new game mode
     if result == "winner":
         print("You've won! The word was " + current_word)
-        print("Your guesses")
-        for guess in guesses:
-            print(guess)
     elif result == "loser":
         print("You're out of guesses! The word was " + current_word)
-        print("Your guesses")
-        for guess in guesses:
-            print(guess)
     else:
         print("what did you do?")
+    print("Your guesses")
+    for guess in guesses:
+        print(guess)
+    
     user_play_again()
 
 
