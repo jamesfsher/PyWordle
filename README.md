@@ -3,11 +3,11 @@
 #### Video Demo: https://youtu.be/7Bt3I1xpNQM
 
 #### Description:
-Overview:
+## Overview:
 
 This is my final project for cs50P. It is a copy of NYT's Wordle (https://www.nytimes.com/games/wordle/index.html) that runs in your terminal, built using Python. The game is played just like Wordle, where you have 5 tries to guess a randomly selected 5 letter word. The game will update you on your progress, listing which letters were correct in the correct placement, and correct in the wrong placement. It will also display all available letters to you, removing incorrect letters as you go.
 
-Logic Breakdown:
+## Logic Breakdown:
 The code is broken down into several functions. The primary being a function to play a round, 
 
 which can be called continuously to keep playing. I realize this may cause an issue with stack overflow, but that is a problem TODO. Play_round accepts several functions as parameters in order to perform unit testing (described below)
