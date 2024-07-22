@@ -49,6 +49,3 @@ def test_select_word(mock_csv_reader, mock_open):
     word, all_words = select_word()
     assert word in ["apple", "ample", "apply"]
     assert all_words == ["apple", "ample", "apply"]
-
-if __name__ == "__main__":
-    pytest.main()
